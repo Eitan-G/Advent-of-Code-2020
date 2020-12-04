@@ -31,4 +31,6 @@ const getGroups = string => {
   }
 }
 
-const countValidated = (passwords, validation) => passwords.filter(validation).length
+const countValidated = (passwords, validation=cheesyValidate) => passwords.filter(validation).length
+
+module.exports = { countValidated }
