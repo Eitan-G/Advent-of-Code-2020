@@ -21,6 +21,11 @@ const saneValidate = (string) => {
   return count >= min
 }
 
+const positionalValidate = (string) => {
+  const { min, max, char, password } = getGroups(string)
+  return (password.charAt(min - 1) === char) ^ (password.charAt(max - 1) === char)
+}
+
 const getGroups = string => {
   const { groups } = string.match(/(?<min>\d+)-(?<max>\d+)\s(?<char>.):\s(?<password>.*)/)
   return {
@@ -33,4 +38,10 @@ const getGroups = string => {
 
 const countValidated = (passwords, validation=cheesyValidate) => passwords.filter(validation).length
 
-module.exports = { countValidated }
+module.exports = {
+  countValidated,
+  cheesyValidate,
+  lessCheesyValidate,
+  saneValidate,
+  positionalValidate,
+}
