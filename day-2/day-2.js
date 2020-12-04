@@ -11,7 +11,7 @@ const lessCheesyValidate = (string) => {
   return min <= count && max >= count
 }
 
-const saneValidate = (string) => {
+const leastCheesyValidate = (string) => {
   const { min, max, char, password } = getGroups(string)
   let count = 0
   for (const _char of password) {
@@ -42,6 +42,6 @@ module.exports = {
   countValidated,
   cheesyValidate,
   lessCheesyValidate,
-  saneValidate,
+  leastCheesyValidate,
   positionalValidate,
 }

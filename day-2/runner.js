@@ -2,7 +2,7 @@ const {
     countValidated,
     cheesyValidate,
     lessCheesyValidate,
-    saneValidate,
+    leastCheesyValidate,
     positionalValidate,
 } = require("./day-2.js")
 
