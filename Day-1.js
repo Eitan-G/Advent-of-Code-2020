@@ -1,8 +1,8 @@
 let findPair = (entries=[], sum) => { // O(n)
   const lookup = {}
-  for (let i of entries) { // O(n)
-    const difference = sum - i // O(1)
-    if (lookup[difference]) { return [i, difference] } // O(1)
+  for (let i of entries) {
+    const difference = sum - i
+    if (lookup[difference]) { return [i, difference] }
     lookup[i] = true
   }
   return []
@@ -10,10 +10,10 @@ let findPair = (entries=[], sum) => { // O(n)
 
 let findTriplets = (entries=[], sum) => { // O(n^2)
   for (let i = 0; i < entries.length; i++) { // O(n)
-    const copy = [...entries] // O(n)
-    copy.splice(i, 1) // O(?)
-    const difference = sum - entries[i] // O(1)
+    const copy = [...entries]
+    copy.splice(i, 1)
+    const difference = sum - entries[i]
     const triplets = [entries[i], ...findPair(copy, difference)] // O(n)
-    if (triplets.length === 3) { return triplets.reduce((acc, i) => acc * i, 1) } // O(1)
+    if (triplets.length === 3) { return triplets.reduce((acc, i) => acc * i, 1) }
   }
 }
