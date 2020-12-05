@@ -1,13 +1,20 @@
+const fs = require("fs")
+const input = fs.readFileSync('./input.txt', 'utf8').split("\n").filter(a => a)
+const rowLength = input[0].length
+
 const TREE_SYMBOL = "#"
 
-const countTrees = (input, rowLength=31, slope=[3, 1]) => {
-    const [right, down] = slope
+const countTrees = ([right, down]) => {
     let treeCount = 0
-    for (let row = 0; row < input.length; row += down) {
-        const indexInRow = (row * right) % rowLength
+    let indexInRow = right
+    for (let row = down; row < input.length; row += down) {
         if (input[row][indexInRow] === TREE_SYMBOL) { treeCount++}
+        indexInRow = (indexInRow + right) % rowLength
     }
     return treeCount
 }
 
-module.exports = { countTrees }
+const countTreesMultipleSlopes = (slopes=[]) =>
+    slopes.map(countTrees).reduce((product, count) => product * count, 1)
+
+module.exports = { countTrees, countTreesMultipleSlopes }
